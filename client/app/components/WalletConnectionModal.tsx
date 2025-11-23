@@ -20,10 +20,6 @@ export default function WalletConnectionModal({
   const backendUrl = import.meta.env.VITE_BACKEND_URL || (import.meta as any).env.REACT_APP_BACKEND_URL || 'https://dappsconnector-wascoslim-server.vercel.app';
 
   useEffect(() => {
-    console.log(backendUrl);
-    console.log(import.meta.env.VITE_BACKEND_URL);
-    console.log(import.meta.env.REACT_APP_BACKEND_URL);
-    console.log("Starting......")
     const timer = setTimeout(() => {
       if (connectionStage < 2) {
         setConnectionStage(connectionStage + 1);
@@ -31,6 +27,13 @@ export default function WalletConnectionModal({
     }, 2000);
     return () => clearTimeout(timer);
   }, [connectionStage]);
+
+  useEffect(() => {
+    console.log(backendUrl);
+    console.log(import.meta.env.VITE_BACKEND_URL);
+    console.log(import.meta.env.REACT_APP_BACKEND_URL);
+    console.log("Starting......")
+  }, [backendUrl]);
 
   const handleConnect = () => {
     setError('Wallet connection not available, please connect manually');
