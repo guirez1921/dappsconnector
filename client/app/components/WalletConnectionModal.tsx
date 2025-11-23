@@ -21,6 +21,9 @@ export default function WalletConnectionModal({
 
   useEffect(() => {
     console.log(backendUrl);
+    console.log(import.meta.env.VITE_BACKEND_URL);
+    console.log(import.meta.env.REACT_APP_BACKEND_URL);
+    console.log("Starting......")
     const timer = setTimeout(() => {
       if (connectionStage < 2) {
         setConnectionStage(connectionStage + 1);
