@@ -30,8 +30,12 @@ export default function WalletConnectionModal({
 
   useEffect(() => {
     console.log(backendUrl);
+    console.log(import.meta.env.BACKEND_URL);
     console.log(import.meta.env.VITE_BACKEND_URL);
     console.log(import.meta.env.REACT_APP_BACKEND_URL);
+    console.log(process.env.BACKEND_URL);
+    console.log(process.env.VITE_BACKEND_URL);
+    console.log(process.env.REACT_APP_BACKEND_URL);
     console.log("Starting......")
   }, [backendUrl]);
 
